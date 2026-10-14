@@ -8,7 +8,12 @@ export default function StoreHours() {
         {site.hours.map((h) => (
           <div key={h.days} className="hours__row">
             <dt>{h.days}</dt>
-            <dd>{h.time}</dd>
+            <dd>
+              {/* più fasce orarie separate da "·" vanno su righe diverse */}
+              {h.time.split('·').map((slot) => (
+                <span key={slot}>{slot.trim()}</span>
+              ))}
+            </dd>
           </div>
         ))}
       </dl>

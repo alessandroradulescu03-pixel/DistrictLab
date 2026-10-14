@@ -49,18 +49,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Nastro di parole chiave */}
-      <div className="marquee" aria-hidden="true">
-        <div className="marquee__track">
-          {[...home.marquee, ...home.marquee].map((w, i) => (
-            <span key={i}>
-              {w}
-              <i>✕</i>
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* 2 — ULTIMI ARRIVI */}
       <section className="section" aria-labelledby="new-title">
         <div className="container">

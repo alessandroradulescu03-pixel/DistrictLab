@@ -38,20 +38,28 @@ export const site = {
    * (non cliccabile) invece di un link falso.
    */
   social: {
-    instagram: '',
+    instagram: 'https://www.instagram.com/districtlab.official/',
     tiktok: ''
   },
 
   /*
    * ORARI DI APERTURA
-   * Nessun orario è stato ancora confermato: la lista è vuota e il sito
-   * mostra un invito a chiamare. Quando li avrai, compila così:
+   * Per più fasce nello stesso giorno separale con " · " (vanno su righe diverse).
+   * Se la lista è vuota il sito mostra un invito a chiamare. Formato:
    *   hours: [
    *     { days: 'Lunedì', time: 'Chiuso' },
    *     { days: 'Martedì – Sabato', time: '00:00 – 00:00' },
    *   ]
    */
-  hours: [],
+  hours: [
+    { days: 'Lunedì', time: '15:30 – 19:30' },
+    { days: 'Martedì', time: '15:30 – 19:30' },
+    { days: 'Mercoledì', time: '15:30 – 19:30' },
+    { days: 'Giovedì', time: '15:30 – 19:30' },
+    { days: 'Venerdì', time: '15:30 – 19:30' },
+    { days: 'Sabato', time: '09:30 – 12:30 · 15:30 – 19:30' },
+    { days: 'Domenica', time: '09:30 – 12:30 · 15:30 – 19:30' }
+  ],
 
   /*
    * RECENSIONI

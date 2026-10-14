@@ -21,11 +21,22 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [bump, setBump] = useState(false);
+  const wrapRef = useRef(null);
   const headerRef = useRef(null);
   const prevCount = useRef(count);
+  const [menuTop, setMenuTop] = useState(0);
 
   const closeMenu = useCallback(() => setMenuOpen(false), []);
-  useModal(menuOpen, headerRef, closeMenu);
+  useModal(menuOpen, wrapRef, closeMenu);
+
+  // Il menu mobile parte esattamente sotto la barra dell'header
+  useEffect(() => {
+    if (!menuOpen) return;
+    const update = () => setMenuTop(Math.max(0, headerRef.current?.getBoundingClientRect().bottom || 0));
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, [menuOpen]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -50,7 +61,12 @@ export default function Header() {
   const overlay = pathname === '/' && !scrolled && !menuOpen;
 
   return (
-    <header ref={headerRef} className={`header ${overlay ? 'header--overlay' : ''} ${scrolled ? 'header--scrolled' : ''}`}>
+    // display: contents → il contenitore non influisce sul layout (l'header resta "sticky")
+    <div ref={wrapRef} style={{ display: 'contents' }}>
+    <header
+      ref={headerRef}
+      className={`header ${overlay ? 'header--overlay' : ''} ${scrolled ? 'header--scrolled' : ''} ${menuOpen ? 'header--menu' : ''}`}
+    >
       <div className="header__inner container">
         <button
           type="button"
@@ -92,10 +108,12 @@ export default function Header() {
           </span>
         </button>
       </div>
+    </header>
 
       <div
         id="mobile-menu"
         className={`mobile-menu ${menuOpen ? 'is-open' : ''}`}
+        style={{ top: menuTop }}
         hidden={!menuOpen}
       >
         <nav aria-label="Navigazione mobile">
@@ -118,6 +136,6 @@ export default function Header() {
           </Link>
         </div>
       </div>
-    </header>
+    </div>
   );
 }

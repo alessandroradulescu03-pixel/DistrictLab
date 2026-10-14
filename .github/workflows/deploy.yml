@@ -1,0 +1,58 @@
+# Pubblicazione automatica su GitHub Pages.
+# Si avvia da solo a ogni "push" sul ramo main (oppure a mano dalla scheda Actions).
+# Prerequisito UNA TANTUM: Settings → Pages → Source: "GitHub Actions".
+
+name: Deploy su GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il codice
+        uses: actions/checkout@v4
+
+      - name: Installa Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installa le dipendenze
+        run: npm ci || npm install
+
+      - name: Compila il sito
+        run: npm run build
+        env:
+          # Il nome del repository viene inserito automaticamente:
+          # es. repository "DistrictLab" → base "/DistrictLab/"
+          BASE_PATH: /${{ github.event.repository.name }}/
+
+      - name: Prepara i file per Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Pubblica
+        id: deployment
+        uses: actions/deploy-pages@v4

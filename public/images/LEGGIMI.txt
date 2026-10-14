@@ -1,0 +1,2 @@
+Metti qui le foto reali del negozio e dei prodotti (JPG/WebP).
+Poi collegale in src/data/images.js con local('nome-file.jpg').

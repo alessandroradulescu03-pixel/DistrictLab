@@ -28,8 +28,8 @@ export default function Legal() {
           <h2>Cookie policy</h2>
           <p>
             Questa demo non usa cookie di profilazione né strumenti di analisi. Salva solo il contenuto del carrello nella
-            memoria del tuo browser (localStorage), che puoi cancellare in qualsiasi momento. La mappa di Google nella
-            pagina Contatti viene caricata solo su richiesta.
+            memoria del tuo browser (localStorage), che puoi cancellare in qualsiasi momento. La pagina Contatti
+            include una mappa di Google Maps, soggetta all’informativa privacy di Google.
           </p>
         </section>
         <section id="termini">

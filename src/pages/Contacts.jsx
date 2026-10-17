@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Reveal from '../components/Reveal.jsx';
 import SocialLinks from '../components/SocialLinks.jsx';
 import StoreHours from '../components/StoreHours.jsx';
@@ -8,7 +7,6 @@ import { usePageTitle } from '../hooks/usePageTitle.js';
 
 export default function Contacts() {
   usePageTitle('Contatti');
-  const [showMap, setShowMap] = useState(false);
 
   return (
     <div className="page contacts">
@@ -68,24 +66,12 @@ export default function Contacts() {
         </Reveal>
 
         <Reveal className="map-box" delay={120}>
-          {showMap ? (
-            <iframe
-              title={`Mappa: ${fullAddress}`}
-              src={mapsEmbedUrl}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          ) : (
-            <div className="map-box__placeholder">
-              <PinIcon width={36} height={36} />
-              <p className="display-sm">{site.address.city}</p>
-              <p>{site.address.street}</p>
-              <button type="button" className="btn btn--dark" onClick={() => setShowMap(true)}>
-                Carica la mappa
-              </button>
-              <small>La mappa è fornita da Google e viene caricata solo se la richiedi.</small>
-            </div>
-          )}
+          <iframe
+            title={`Mappa: ${fullAddress}`}
+            src={mapsEmbedUrl}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </Reveal>
       </div>
     </div>

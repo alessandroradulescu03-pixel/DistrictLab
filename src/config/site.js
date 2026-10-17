@@ -102,7 +102,7 @@ const mapsQuery = encodeURIComponent(
 // Link alle indicazioni stradali (formato ufficiale Google Maps URLs).
 export const mapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapsQuery}`;
 export const mapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
-// Mappa incorporata: viene caricata solo se l'utente la richiede (privacy).
+// Mappa incorporata (Google Maps) mostrata nella pagina Contatti.
 export const mapsEmbedUrl = `https://www.google.com/maps?q=${mapsQuery}&output=embed`;
 
 export const telHref = `tel:${site.phone.tel}`;

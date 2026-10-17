@@ -8,7 +8,7 @@ export const brandDescription = [
   'District Lab non è solo un negozio di streetwear: è un punto di riferimento per chi vive la città con visione, stile e identità.',
   'Selezioniamo capi che rappresentano innovazione, cultura urbana e qualità, combinando brand emergenti e icone internazionali.',
   'La nostra missione è chiara: offrire un’esperienza che va oltre l’acquisto, creando uno spazio dove estetica, ricerca e autenticità si incontrano.',
-  'Ogni collezione è pensata per uomini che non seguono le tendenze, ma le definiscono.',
+  'Ogni collezione è pensata per persone che non seguono le tendenze, ma le definiscono.',
   'District Lab è per chi vede lo streetwear come linguaggio, non come moda.'
 ];
 
